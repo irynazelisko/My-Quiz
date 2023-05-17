@@ -1,20 +1,31 @@
-import React, { useContext } from 'react';
-import { QuizContext } from '../App';
+import { connect } from 'react-redux';
+import { handleRestartQuiz } from '../actions/Actions';
 
-export const ScoreSection = () => {
-  const { questions, score, handleRestartQuiz } = useContext(QuizContext);
 
-  return (
-    <div className="score-section">
-      <div className="score">
-        You scored {score} out of {questions.length}!
-      </div>
-      <div>
-        <button className="score-button" onClick={handleRestartQuiz}>
-          Play again
-        </button>
-      </div>
-    </div>
-  );
+const ScoreSection = ({questions, score, handleRestartQuiz}) => {
+   
+    return (
+        <div className="score-section">
+            <div className="score">
+                You scored {score} out of {questions.length}!
+            </div>
+            <div>
+                <button className="score-button" onClick={handleRestartQuiz}>
+                    Play again
+                </button>
+            </div>
+        </div>
+    );
 };
+
+const mapStateToProps = (state) => ({
+    questions: state.questions,
+    score: state.score
+})
+const mapDispatchToProps = {
+    handleRestartQuiz
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScoreSection);
 

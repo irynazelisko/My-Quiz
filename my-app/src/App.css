@@ -65,6 +65,9 @@ body {
   .button.correct{
     background-color: rgb(53, 106, 53);
   }
+  .button.incorrect{
+    background-color: rgb(171, 37, 37);
+  }
   
   button:hover {
     background-color: #9cd7ff;
